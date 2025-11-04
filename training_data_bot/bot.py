@@ -14,6 +14,14 @@ from .tasks import TaskManager
 from .preprocessing import TextPreprocessor
 from .evaluation import QualityEvaluator
 from .storage import DatasetExporter, DatabaseManager
+from .models import (
+    Document,
+    DocumentType,
+    ProcessingJob,
+    Dataset,
+    TaskType,
+    QualityReport
+)
 
 class TrainingDataBot:
     """
