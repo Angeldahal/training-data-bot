@@ -29,3 +29,33 @@ from .tasks import (
     ClassificationGenerator,
     TaskTemplate,
 )
+
+from .decodo import DecodoClient
+from .preprocessing import TextPreprocessor
+from .evaluation import QualityEvaluator
+from .storage import DatasetExporter
+
+__all__ = [
+    # Core
+    "TrainingDataBot",
+    "settings",
+    "get_logger",
+    "TrainingDataBotError",
+    # Sources
+    "PDFLoader",
+    "WebLoader",
+    "DocumentLoader",
+    "UnifiedLoader",
+
+    # Tasks
+    "QAGenerator",
+    "ClassificationGenerator",
+    "SummarizationGenerator",
+    "TaskTemplate",
+
+    # Services
+    "DecodoClient",
+    "TextPreprocessor",
+    "QualityEvaluator",
+    "DatasetExporter",
+    ]
