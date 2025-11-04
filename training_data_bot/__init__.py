@@ -46,16 +46,14 @@ __all__ = [
     "WebLoader",
     "DocumentLoader",
     "UnifiedLoader",
-
     # Tasks
     "QAGenerator",
     "ClassificationGenerator",
     "SummarizationGenerator",
     "TaskTemplate",
-
     # Services
     "DecodoClient",
     "TextPreprocessor",
     "QualityEvaluator",
     "DatasetExporter",
-    ]
+]

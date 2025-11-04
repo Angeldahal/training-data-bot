@@ -31,12 +31,14 @@ class TaskType(str, Enum):
     RED_TEAMING = "red_teaming"
     INSTRUCTION_RESPONSE = "instruction_response"
 
+
 class QualityMetric(str, Enum):
     TOXICITY = "toxicity"
     BIAS = "bias"
     DIVERSITY = "diversity"
     COHERENCE = "coherence"
     RELEVANCE = "relevance"
+
 
 class Document(BaseEntity):
     title: str
@@ -46,6 +48,7 @@ class Document(BaseEntity):
     word_count: int
     char_count: int
 
+
 class TextChunk(BaseEntity):
     document_id: UUID
     content: str
@@ -54,12 +57,14 @@ class TextChunk(BaseEntity):
     chunk_index: int
     token_count: int
 
+
 class TaskTemplate(BaseEntity):
     name: str
     task_type: TaskType
     description: str
     prompt_template: str
     parameters: dict
+
 
 class TaskResult(BaseEntity):
     task_id: UUID
@@ -69,12 +74,14 @@ class TaskResult(BaseEntity):
     quality_scores: dict
     processing_time: float
 
+
 class TrainingExample(BaseEntity):
     input_text: str
     output_text: str
     task_type: TaskType
     source_document_id: UUID
     quality_scores: int
+
 
 class Dataset(BaseEntity):
     name: str
@@ -85,6 +92,7 @@ class Dataset(BaseEntity):
     validation_split: float
     test_split: float
 
+
 class QualityReport(BaseEntity):
     target_id: UUID
     overall_score: float
@@ -92,6 +100,7 @@ class QualityReport(BaseEntity):
     metric_scores: dict
     issues: List[str]
     warnings: List[str]
+
 
 class ProcessingJob(BaseEntity):
     name: str
