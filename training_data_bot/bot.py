@@ -17,6 +17,7 @@ from .storage import DatasetExporter, DatabaseManager
 from .models import (
     Document,
     DocumentType,
+    ExportFormat,
     ProcessingJob,
     Dataset,
     TaskType,

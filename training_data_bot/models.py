@@ -110,3 +110,7 @@ class ProcessingJob(BaseEntity):
     processed_items: int
     started_at: datetime.datetime
     estimated_completion: datetime.datetime
+
+class ExportFormat(str, Enum):
+    JSONL = "jsonl"
+    JSON = "json"
