@@ -1,2 +1,2 @@
-def get_loggers():
+def get_logger():
     pass

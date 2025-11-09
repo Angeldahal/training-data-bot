@@ -120,7 +120,7 @@ class TrainingDataBot:
             },
             "datasets": {
                 "total": len(self.datasets),
-                "total_example": sum(len(ds.examples)),
+                "total_example": sum(len(self.datasets.examples)),
                 "by_task_type": self._count_examples_by_task_type(),
             },
             "jobs": {
