@@ -1,0 +1,2 @@
+class DecodoClient:
+    pass

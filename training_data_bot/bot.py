@@ -14,7 +14,7 @@ from .tasks import TaskManager
 from .preprocessing import TextPreprocessor
 from .evaluation import QualityEvaluator
 from .storage import DatasetExporter, DatabaseManager
-from .models import (
+from .core.models import (
     Document,
     DocumentType,
     ExportFormat,
