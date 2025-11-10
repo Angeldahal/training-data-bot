@@ -6,6 +6,7 @@ from training_data_bot.core.exceptions import DocumentLoadError
 from training_data_bot.core.models import DocumentType
 from .base import BaseLoader
 
+
 class DocumentLoader(BaseLoader):
     def __init__(self):
         super().__init__()
@@ -18,7 +19,7 @@ class DocumentLoader(BaseLoader):
             DocumentType.DOCX,
         ]
 
-    async def load_single(self, source, encoding='utf-8'):
+    async def load_single(self, source, encoding="utf-8"):
         doc_type = self.get_document_type(source)
         if doc_type == DocumentType.TXT:
             content = await self._load_text(source, encoding)
@@ -32,18 +33,19 @@ class DocumentLoader(BaseLoader):
             content = await self._load_json(source, encoding)
         elif doc_type == DocumentType.DOCX:
             content = await self._load_docx(source)
-    
+
     async def _load_text(self, path, encoding):
         return await asyncio.to_thread(path.read_text, encoding=encoding)
 
     async def _load_md(self, path, encoding):
         return await asyncio.to_thread(path.read_text, encoding=encoding)
-    
+
     async def _load_html(self, path, encoding):
         try:
             from bs4 import BeautifulSoup
+
             with open(path, "r", encoding=encoding) as f:
-                soup = BeautifulSoup(f.read(), 'html.parser')
+                soup = BeautifulSoup(f.read(), "html.parser")
             for script in soup(["script", "style"]):
                 script.decompose()
             text = soup.get_text()
@@ -58,14 +60,14 @@ class DocumentLoader(BaseLoader):
             data = json.load(f)
         if isinstance(data, dict):
             lines = [f"{key}: {value}" for key, value in data.items()]
-            return '\n'.join(lines)
-        elif isinstance(data, list):
-            lines = [f"Item {i+1}: {item}" for i, item in enumerate(data)]
             return "\n".join(lines)
-    
+        elif isinstance(data, list):
+            lines = [f"Item {i + 1}: {item}" for i, item in enumerate(data)]
+            return "\n".join(lines)
+
     async def _load_csv(self, path, encoding):
         lines = []
-        with open(path, 'r', encoding=encoding, newline='') as f:
+        with open(path, "r", encoding=encoding, newline="") as f:
             reader = csv.reader(f)
             headers = next(reader, None)
             if headers:
@@ -73,13 +75,16 @@ class DocumentLoader(BaseLoader):
                 lines.append("")
             for row_num, row in enumerate(reader, 1):
                 if headers and len(row) == len(headers):
-                    row_data = [f'{header}: {value}' for header, value in zip(headers, row)]
-                    lines.append(f'Row: {row_num}: {' | '.join(row_data)}')
+                    row_data = [
+                        f"{header}: {value}" for header, value in zip(headers, row)
+                    ]
+                    lines.append(f"Row: {row_num}: {' | '.join(row_data)}")
         return "\n".join(lines)
 
     async def _load_docx(self, path, encoding):
         try:
             from docx import Document
+
             doc = Document(path)
             text_parts = [p.text for p in doc.paragraphs if p.text.strip()]
             return "\n".join(text_parts)

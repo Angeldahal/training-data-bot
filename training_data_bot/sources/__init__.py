@@ -4,10 +4,4 @@ from .pdf import PDFLoader
 from .unified import UnifiedLoader
 from .web import WebLoader
 
-__all__ = [
-    "BaseLoader",
-    "DocumentLoader",
-    "PDFLoader",
-    "UnifiedLoader",
-    "WebLoader"
-]
+__all__ = ["BaseLoader", "DocumentLoader", "PDFLoader", "UnifiedLoader", "WebLoader"]

@@ -1,0 +1,2 @@
+class SummarizationGenerator:
+    pass
