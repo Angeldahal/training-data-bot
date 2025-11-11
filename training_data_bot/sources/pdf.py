@@ -25,11 +25,12 @@ class PDFLoader(BaseLoader):
             extraction_method="PDFLoader.pymupdf",
         )
         return document
-    
+
     async def _extract_pdf_text(self, path):
         def _extract_text():
             try:
                 import fitz
+
                 doc = fitz.open(path)
                 text_parts = []
                 for page_num in range(doc.page_count):
@@ -40,5 +41,8 @@ class PDFLoader(BaseLoader):
                 doc.close()
                 return "\n\n".join(text_parts)
             except ImportError:
-                raise DocumentLoadError("PyMuPDF package required for PDF files. Install with: pip install PyMuPDF")
+                raise DocumentLoadError(
+                    "PyMuPDF package required for PDF files. Install with: pip install PyMuPDF"
+                )
+
         return await asyncio.to_thread(_extract_text)

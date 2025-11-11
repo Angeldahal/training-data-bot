@@ -8,5 +8,5 @@ __all__ = [
     "QAGenerator",
     "SummarizationGenerator",
     "ClassificationGenerator",
-    "TaskTemplate"
+    "TaskTemplate",
 ]
